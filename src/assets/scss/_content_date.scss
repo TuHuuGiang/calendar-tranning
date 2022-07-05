@@ -1,0 +1,15 @@
+.dates-content {
+    .ant-picker {
+        border-radius: 10px;
+    }
+
+    .dot-icon {
+        margin: 0 12px;
+        font-size: 7px;
+        color: #fff;
+    }
+}
+
+.dates-content:not(:last-child) {
+    margin-bottom: 22px;
+}

@@ -1,0 +1,33 @@
+.siderBar-container {
+    .div-global {
+        flex: 0 0 24%;
+
+        .user__avatar {
+            img {
+                width: 60px;
+                border-radius: 50%;
+            }
+        }
+
+        .user__info {
+            padding: 10px 0 26px;
+            .name {
+                color: $color-white;
+            }
+
+            .tag {
+                font-size: 14px;
+                color: rgb(192, 190, 190);
+            }
+        }
+
+        .button {
+            .btn-global {
+                .btn-icon {
+                    display: inline-block;
+                    margin-right: 6px;
+                }
+            }
+        }
+    }
+}

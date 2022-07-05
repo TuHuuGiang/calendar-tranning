@@ -1,0 +1,27 @@
+.wrapper {
+    .container {
+        .siderBar-container {
+            position: fixed;
+            width: 14%;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100vh;
+            flex: 0 0 14%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: $color-black;
+
+            .sideBar__logo {
+                text-align: center;
+                flex: 0 0 10%;
+
+                img {
+                    max-width: 80%;
+                    color: rgb(255, 255, 255);
+                }
+            }
+        }
+    }
+}
