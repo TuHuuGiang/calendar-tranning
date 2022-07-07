@@ -34,9 +34,9 @@
         padding: 20px 4px;
     }
 
-    .fc-view-harness {
-        height: 1000px !important;
-    }
+    // .fc-view-harness {
+    //     // height: 1000px !important;
+    // }
 
     tbody {
         background-color: #23242a;
@@ -68,6 +68,10 @@
         background-image: linear-gradient(168deg, #954fc4, #261254) !important;
     }
 
+    .fc-highlight {
+        background-color: rgba(255, 220, 40, 0.15);
+    }
+
     .fc-col-header,
     .fc-scrollgrid table,
     .fc-daygrid-body {
@@ -76,7 +80,8 @@
 
     .fc-event-main {
         img {
-            width: 50px;
+            width: 30px;
+            display: block;
         }
 
         .img:not(:first-child) {
@@ -98,7 +103,7 @@
     }
 
     .fc-h-event {
-        background-color: none;
+        background-color: none !important;
         border: none;
     }
     
@@ -107,6 +112,10 @@
         left: 5px;
         bottom: 5px;
     }
+
+    // .fc-media-screen {
+    //     height: 616px;
+    // }
 
     // .fc-daygrid-body {
     //     z-index: 0;

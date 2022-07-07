@@ -17,7 +17,7 @@ export default function InfoUser() {
             <i className="btn-icon">
               <ArrowRightOutlined />
             </i>
-            Sign out
+            <span>Sign out</span>
           </button>
         </div>
       </div>

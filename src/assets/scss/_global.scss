@@ -15,25 +15,25 @@
 }
 
 .padding {
-    padding: 22px;
+    padding: 1.375em;
 }
 
 .p-btn-sidebar {
-    padding: 10px 12px;
+    padding: 0.625em 0.75em;
 }
 
 .p-btn-content {
-    padding: 12px 22px;
+    padding: 0.75em 1.375em;
 }
 
 .p-btn-tag {
-    padding: 6px 14px;
-    margin: 10px;
+    padding: 0.375em 0.875em;
+    margin: 0.625em;
 }
 
 .btn-global {
     color: $color-white;
-    border-radius: 22px;
+    border-radius: 1.375em;
     font-weight: 600;
     border: none;
     background-color: $color-violet;
@@ -46,8 +46,8 @@
 
 .div-global {
     text-align: center;
-    padding: 22px;
-    border-radius: 26px;
+    padding: 1.375em;
+    border-radius: 1.625em;
     background-color: #1e1c28;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .ml-32px {
-    margin-left: 32px;
+    margin-left: 2em;
 }
 
 .bg-color-gradient {
@@ -68,13 +68,13 @@
 }
 
 .ml-20 {
-    margin-left: 20px;
+    margin-left: 1.25em;
 }
 
 // Active link
 .active {
     color: $color-white !important;
-    border-radius: 20px;
+    border-radius: 1.25em;
     background-color: #1e1c28;
 
     .link-icon {

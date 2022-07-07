@@ -1,29 +1,46 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import "./setting.scss";
-
-import imgTest from "../../../assets/img/user.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeState } from "../../../redux/reducers/stateModal";
+import { RootState } from "../../../redux/store";
+import { useNavigate } from "react-router-dom";
+import { saveInfo } from "../../../redux/reducers/infoEvent";
+import moment from "moment";
 
 export default function Calendar() {
-  let [events, setEvents] = useState<any>([]);
+  const navigate = useNavigate();
+  const postList = useSelector((state: RootState) => state.postList.postList);
+  const dispatch = useDispatch();
+  let [events, setEvents] = useState<any>([...postList]);
+
+  useEffect(() => {
+    setEvents(postList);
+  }, [postList]);
 
   const renderEventContent = (eventInfo: any) => {
-    console.log(123456)
     const props = eventInfo.event.extendedProps;
-    return <img src={imgTest} alt="" />;
+    return <img src={props.arrImg[0]} alt="" />;
   };
 
-  const addEvent = (e: any) => {
-    console.log(e);
-    
-    let event = {
-      title: "Event 1",
-      date: e.dateStr  
-    };
+  const addEvent = () => {
+    dispatch(changeState(true));
+    navigate("create-post");
+  };
 
-    setEvents((prev: any) => [...prev, event]);
+  const showEnvent = (info: any) => {
+    dispatch(changeState(true));
+    navigate("settings");
+    let date = moment(new Date(info.event.start)).format("YYYY-MM-DD");
+    let valueEvent = {
+      id: info.event._def.publicId,
+      title: info.event._def.title,
+      arrImg: info.event._def.extendedProps.arrImg,
+      description: info.event._def.extendedProps.description,
+      start: date,
+    };
+    dispatch(saveInfo(valueEvent));
   };
 
   return (
@@ -33,9 +50,11 @@ export default function Calendar() {
           eventContent={renderEventContent}
           dateClick={addEvent}
           events={events}
+          selectable={true}
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
           firstDay={1}
+          eventClick={showEnvent}
         />
       </div>
     </>

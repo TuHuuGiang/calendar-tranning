@@ -1,8 +1,5 @@
 import Settings from "../../components/settings";
-import { PlusOutlined, RightSquareOutlined } from "@ant-design/icons";
-
-import { Link } from "react-router-dom";
-import CreatePost from "../../components/contents/createPost";
+import CreatePost from "../../components/contents/btnCreatePost";
 import UserOnline from "../../components/contents/user";
 import Notification from "../../components/contents/notification";
 import Calendar from "../../components/contents/calendar";
@@ -35,14 +32,6 @@ export default function CalendarPage() {
           <Settings />
         </>
       )}
-      {/* <div className="contents-container padding">
-        <UserOnline />
-        <CreatePost />
-        <Notification />
-        <Calendar />
-      </div> */}
-      {/* {stateRedux ? <Settings /> : ""} */}
-      {/* <Settings /> */}
     </>
   );
 }

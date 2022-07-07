@@ -6,8 +6,8 @@ export const stateModal = createSlice({
         state: false
     },
     reducers: {
-        changeState: (state) => {
-            state.state = !state.state
+        changeState: (state, action) => {
+            state.state = action.payload;         
         }
     }
 });

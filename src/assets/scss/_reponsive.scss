@@ -1,0 +1,301 @@
+// // @media only screen and (min-width: 600px) and (min-width: 899px) {
+// //     .wrapper {
+// //         .container {
+// //             .flex-66 {
+// //                 flex: 0 0 100% !important;
+// //             }
+
+// //             .siderBar-container {
+// //                 display: none !important;
+// //             }
+
+// //             .contents-container {
+// //                 margin-left: 0% !important;
+// //                 flex: 0 0 100%;
+// //             }
+
+// //             .settings-container {
+// //                 width: 40%;
+// //                 flex: 0 0 0%;
+// //                 z-index: 9999;
+// //             }
+// //         }
+// //     }
+// // }
+
+// @media only screen and (max-width: 953px) {
+
+//     // Sidebar
+//     .siderBar-container {
+//         .div-global {
+//             .button {
+//                 .btn-global {
+//                     i {
+//                         display: block !important;
+//                         margin-right: 0 !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     // End sidebar
+// }
+
+// @media only screen and (max-width: 987px) {
+
+//     // Global 
+//     .btn-global {
+//         font-weight: 1 !important;
+//     }
+
+//     .p-btn-content {
+//         padding: 4px 6px;
+//     }
+
+//     // End global
+// }
+
+// @media only screen and (min-width: 900px) and (max-width: 1433px) {
+
+//     // Global
+//     .padding {
+//         padding: 0.9em 0.375em;
+//     }
+
+//     .p-btn-sidebar {
+//         padding: 10px 8px
+//     }
+
+//     .p-btn-tag {
+//         margin: 4px;
+//     }
+
+//     .ml-20 {
+//         margin-left: 6px;
+//     }
+
+//     // End global
+
+//     // Sidebar
+//     .siderBar-container {
+//         .sideBar__logo {
+//             img {
+//                 max-width: 96% !important;
+//             }
+//         }
+
+//         .sideBar__nav {
+//             padding: 0;
+
+//             .nav {
+//                 .nav-link {
+//                     a {
+//                         text-align: center;
+//                         margin: 10px 0;
+//                         padding: 6px;
+
+//                         .link-icon {
+//                             width: 100%;
+//                             display: block;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+
+//         .div-global {
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: center;
+//             align-items: center;
+
+//             .user__avatar {
+//                 img {
+//                     width: 44px;
+//                 }
+//             }
+
+//             .user__info {
+//                 padding-bottom: 10px;
+
+//                 .name {
+//                     margin: 0;
+//                 }
+//             }
+//         }
+//     }
+
+//     // End sidebar
+
+//     // Content 
+//     .contents-container {
+//         padding-left: 10px;
+//         padding-right: 10px;
+//     }
+
+//     .contents__show-notification {
+//         gap: 2%;
+//     }
+
+//     // End content
+
+//     // Settings
+//     .settings-container {
+//         .list-image {
+//             .images {
+//                 text-align: center;
+
+//                 .img-settings {
+//                     height: 142px !important;
+//                 }
+//             }
+//         }
+
+//         .dates {
+//             .dates-content {
+//                 text-align: center;
+
+//                 .ant-picker {
+//                     margin: 4px 0;
+//                 }
+
+//                 .dot-icon {
+//                     display: none;
+//                 }
+//             }
+//         }
+
+//         .tags {
+//             .tag-content {
+//                 text-align: center;
+//             }
+//         }
+//     }
+
+//     // End settings
+// }
+
+// @media only screen and (min-width: 1434px) {
+
+//     // Global
+//     .padding {
+//         padding: 10px;
+//     }
+
+//     .p-btn-tag {
+//         margin: 4px;
+//     }
+
+//     .sub-title {
+//         padding-top: 6px !important;
+//     }
+
+//     // .p-btn-sidebar {
+//     //     padding: 10px 8px
+//     // }
+
+//     // End global
+
+//     // Sidebar
+//     .siderBar-container {
+//         .sideBar__logo {
+//             img {
+//                 max-width: 80% !important;
+//             }
+//         }
+
+//         .sideBar__nav {
+//             padding: 0;
+
+//             .nav {
+//                 .nav-link {
+//                     // a {
+//                     //     // text-align: center;
+//                     //     margin: 10px 0;
+//                     //     padding: 6px;
+
+//                     //     .link-icon {
+//                     //         // width: 100%;
+//                     //         // display: block;
+//                     //     }
+//                     // }
+//                 }
+//             }
+//         }
+
+//         .div-global {
+//             display: flex;
+//             flex-direction: column;
+//             justify-content: center;
+//             align-items: center;
+
+//             .user__avatar {
+//                 img {
+//                     width: 44px;
+//                 }
+//             }
+
+//             .user__info {
+//                 padding-bottom: 10px;
+
+//                 .name {
+//                     margin: 0;
+//                 }
+//             }
+//         }
+//     }
+
+//     // End sidebar
+
+//     // Content 
+//     .contents-container {
+//         padding-left: 10px;
+//         padding-right: 10px;
+//     }
+
+//     // End content
+
+//     // Settings
+//     .settings-container {
+//         .list-image {
+//             .images {
+//                 text-align: center;
+
+//                 .img-settings {
+//                     height: 142px !important;
+//                 }
+//             }
+//         }
+
+//         .dates {
+//             .dates-content {
+//                 text-align: center;
+
+//                 .ant-picker {
+//                     margin: 4px 2px;
+//                 }
+
+//                 .dot-icon {
+//                     display: none;
+//                 }
+//             }
+//         }
+
+//         .tags {
+//             .tag-content {
+//                 text-align: center;
+//             }
+//         }
+//     }
+
+//     // End settings
+// }
+
+// @media only screen and (min-width: 1720px) {
+//     .dates {
+//         .dot-icon {
+//             display: inline-block !important;
+//         }
+//     }
+// }
