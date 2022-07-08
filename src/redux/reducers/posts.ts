@@ -38,7 +38,8 @@ export const post = createSlice({
         editPost: (state, action) => {
             console.log(action.payload.id);
             let findIndex = state.postList.findIndex(p => p.id === +action.payload.id);
-            state.postList[findIndex] = action.payload
+            state.postList.splice(findIndex, 1);
+            state.postList.push(action.payload);
         }
     }
 });
