@@ -175,6 +175,7 @@ export default function FormPost(props: IFormPost) {
                   rows={5}
                   value={formik.values.descFormik || desc}
                   placeholder="Enter description ...."
+                  onChange={(e: any) => setDesc(e.target.value)}
                 />
                 {formik.errors.descFormik && formik.touched.descFormik ? (
                   <p className="errorMsg">{formik.errors.descFormik}</p>
