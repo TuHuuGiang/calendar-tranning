@@ -71,6 +71,12 @@
     margin-left: 1.25em;
 }
 
+.errorMsg {
+    max-width: 100%;
+    font-size: 0.9rem;
+    color: rgb(248, 106, 106);
+}
+
 // Active link
 .active {
     color: $color-white !important;

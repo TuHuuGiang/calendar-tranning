@@ -1,4 +1,5 @@
 import { CalendarOutlined, FundOutlined, InfoCircleOutlined, PieChartOutlined, ProfileOutlined, SettingOutlined } from "@ant-design/icons";
+import { SITE_MAP } from "./site-map";
 
 export const navLink = [
     {
@@ -7,7 +8,7 @@ export const navLink = [
         icon: <PieChartOutlined />
     },
     {
-        path: '/calendar',
+        path: SITE_MAP.CALENDAR.path,
         title: 'Calendar',
         icon: <CalendarOutlined />
     },

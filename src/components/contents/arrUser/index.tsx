@@ -1,7 +1,12 @@
 import user from "../../../assets/img/user.jpg";
 import user1 from "../../../assets/img/user1.jpg";
 
-export const arrUser = [
+interface IArrUser {
+  id: number;
+  url: string;
+}
+
+export const arrUser: IArrUser[] = [
   {
     id: 1,
     url: user,

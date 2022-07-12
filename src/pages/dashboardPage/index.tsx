@@ -6,7 +6,7 @@ export default function DashboardPage() {
       <div className="contents-container">
         <h4>Dashboard</h4>
       </div>
-      <Settings />
+      {/* <Settings /> */}
     </>
   );
 }

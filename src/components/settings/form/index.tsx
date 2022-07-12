@@ -5,30 +5,43 @@ import {
   EditOutlined,
   PlusSquareOutlined,
 } from "@ant-design/icons";
-import { Carousel, Input } from "antd";
+import { Carousel } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { changeState } from "../../../redux/reducers/stateModal";
+import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 import DateAndTime from "../date";
 import UploadImg from "../upload";
 import { useEffect, useState } from "react";
 import { addPost, editPost } from "../../../redux/reducers/posts";
+import { SITE_MAP } from "../../sideBar/navigate/navigateLink/site-map";
+import Tag from "../btn-tags";
+import { Formik, Field } from "formik";
+import { validations } from "./validate";
 
-interface IProps {
-  title: string;
+interface IFormPost {
+  action?: string;
 }
 
-export default function FormPost(props: IProps) {
-  const stateRedux = useSelector((state: RootState) => state.stateModal.state);
+interface IFormSettings {
+  uploadFormik: string;
+  descFormik: string;
+  dateFormik: string;
+}
+
+export default function FormPost(props: IFormPost) {
+  const valueInfo = useSelector((state: RootState) => state.info.info);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let { actions } = useParams();
 
   const [date, setDate] = useState<string>("");
   const [img, setImg] = useState<string[]>([]);
   const [desc, setDesc] = useState<string>("");
-  const valueInfo = useSelector((state: RootState) => state.info.info);
+
+  const initialValues: IFormSettings = {
+    uploadFormik: "",
+    descFormik: "",
+    dateFormik: "",
+  };
 
   useEffect(() => {
     setValue();
@@ -41,42 +54,34 @@ export default function FormPost(props: IProps) {
   };
 
   const handleClose = () => {
-    dispatch(changeState(false));
-    navigate("/calendar");
+    navigate(SITE_MAP.CALENDAR.path);
     setImg([]);
     setDesc("");
     setDate("");
   };
 
-  const getImage = (img: string) => {
-    setImg([img]);
-  };
-
-  const getDate = (date: string) => {
-    setDate(date);
-  };
-
-  const handleSave = () => {
-    if (actions === "create-post") {
+  const handleSave = (values: any) => {
+    if (props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate) {
       let postAdd = {
         id: Date.now(),
         title: "",
-        arrImg: [img],
-        description: desc,
-        start: date,
+        arrImg: [values.uploadFormik],
+        description: values.descFormik,
+        start: values.dateFormik,
       };
       dispatch(addPost(postAdd));
-      dispatch(changeState(false));
+      navigate(SITE_MAP.CALENDAR.path);
     } else {
       let postEdit = {
         id: valueInfo.id,
         title: "",
         arrImg: [img],
-        description: desc,
-        start: date,
+        description: values.descFormik || desc,
+        start: values.dateFormik || date,
       };
+      console.log(postEdit);
       dispatch(editPost(postEdit));
-      dispatch(changeState(false));
+      navigate(SITE_MAP.CALENDAR.path);
     }
     setImg([]);
     setDesc("");
@@ -85,119 +90,130 @@ export default function FormPost(props: IProps) {
 
   return (
     <>
-      <div
-        className={
-          stateRedux
-            ? "settings-container padding display-block"
-            : "settings-container padding"
-        }
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validations}
+        onSubmit={(values, { resetForm }) => {
+          handleSave(values);
+          resetForm();
+        }}
       >
-        <h2 className="title">{props.title}</h2>
-        <div className="list-image">
-          <p className="sub-title">
-            Image
-            <i className="icon-sub">
-              <DeleteOutlined />
-            </i>
-          </p>
-          <div className="images">
-            {actions === "create-post" ? (
-              <UploadImg getImage={getImage} />
-            ) : (
-              <Carousel autoplay>
-                {img.map((img, index) => (
-                  <img className="img-settings" key={index} src={img} alt="" />
-                ))}
-              </Carousel>
-            )}
-          </div>
-        </div>
-        <div className="description">
-          <p className="sub-title">
-            Description
-            <i className="icon-sub">
-              <EditOutlined />
-            </i>
-          </p>
-          <div className="textArea">
-            <Input.TextArea
-              className="input-textarea"
-              rows={5}
-              value={desc}
-              placeholder="Enter description ...."
-              onChange={(e) => setDesc(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="dates">
-          <p className="sub-title">
-            Date of Posting
-            <i className="icon-sub">
-              <PlusSquareOutlined />
-            </i>
-          </p>
-          <DateAndTime propsDate={date} getDate={getDate} />
-          {/* <DateAndTime /> */}
-        </div>
-        <div className="tags">
-          <p className="sub-title">Tags</p>
-          <div className="tag-content">
-            <button className="btn-global p-btn-tag bg-color-gradient">
-              Party
-              <i>
-                <CloseCircleOutlined />
-              </i>
-            </button>
-            <button className="btn-global p-btn-tag bg-color-gradient">
-              Party
-              <i>
-                <CloseCircleOutlined />
-              </i>
-            </button>
-            <button className="btn-global p-btn-tag bg-color-gradient">
-              Party
-              <i>
-                <CloseCircleOutlined />
-              </i>
-            </button>
-            <button className="btn-global p-btn-tag bg-color-gradient">
-              Party
-              <i>
-                <CloseCircleOutlined />
-              </i>
-            </button>
-            <button className="btn-global p-btn-tag bg-color-gradient">
-              Party
-              <i>
-                <CloseCircleOutlined />
-              </i>
-            </button>
-            <button className="btn-global p-btn-tag bg-color-gradient">
-              Party
-              <i>
-                <CloseCircleOutlined />
-              </i>
-            </button>
-          </div>
-        </div>
-        <div className="save">
-          <button className="btn-global p-btn-content" onClick={handleSave}>
-            Save
-            <i>
-              <CheckCircleOutlined />
-            </i>
-          </button>
-          <button
-            className="btn-global p-btn-content ml-20 bg-red"
-            onClick={handleClose}
+        {(formik) => (
+          <div
+            className={`settings-container padding ${
+              props.action ? "display-block" : ""
+            }`}
           >
-            Close
-            <i>
-              <CloseCircleOutlined />
-            </i>
-          </button>
-        </div>
-      </div>
+            <h2 className="title">
+              {props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate
+                ? "Create Post"
+                : "Settings Post"}
+            </h2>
+            <div className="list-image">
+              <p className="sub-title">
+                Image
+                <i className="icon-sub">
+                  <DeleteOutlined />
+                </i>
+              </p>
+              <div className="images">
+                {props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate ? (
+                  <UploadImg
+                    name="uploadFormik"
+                    propsFormik={formik}
+                    propsValue={formik.values.uploadFormik}
+                  />
+                ) : (
+                  <Carousel autoplay>
+                    {img.map((img, index) => (
+                      <img
+                        className="img-settings"
+                        key={index}
+                        src={img}
+                        alt=""
+                      />
+                    ))}
+                  </Carousel>
+                )}
+              </div>
+              {formik.errors.uploadFormik && formik.touched.uploadFormik ? (
+                <p className="errorMsg">{formik.errors.uploadFormik}</p>
+              ) : null}
+            </div>
+            <div className="description">
+              <p className="sub-title">
+                Description
+                <i className="icon-sub">
+                  <EditOutlined />
+                </i>
+              </p>
+              <div className="textArea">
+                <Field
+                  component="textarea"
+                  className="input-textarea"
+                  id="descFormik"
+                  name="descFormik"
+                  rows={5}
+                  value={formik.values.descFormik || desc}
+                  placeholder="Enter description ...."
+                />
+                {formik.errors.descFormik && formik.touched.descFormik ? (
+                  <p className="errorMsg">{formik.errors.descFormik}</p>
+                ) : null}
+              </div>
+            </div>
+            <div className="dates">
+              <p className="sub-title">
+                Date of Posting
+                <i className="icon-sub">
+                  <PlusSquareOutlined />
+                </i>
+              </p>
+              <DateAndTime
+                name="dateFormik"
+                propsValue={formik.values.dateFormik || date}
+                propsFormik={formik}
+              />
+              {formik.errors.dateFormik && formik.touched.dateFormik ? (
+                <p className="errorMsg">{formik.errors.dateFormik}</p>
+              ) : null}
+              {/* <DateAndTime /> */}
+            </div>
+            <div className="tags">
+              <p className="sub-title">Tags</p>
+              <div className="tag-content">
+                <Tag nameTag="Party" />
+                <Tag nameTag="Dancing" />
+                <Tag nameTag="Mood" />
+                <Tag nameTag="Girl" />
+                <Tag nameTag="Boy" />
+                <Tag nameTag="Thoughts" />
+              </div>
+            </div>
+            <div className="save">
+              <button
+                className="btn-global p-btn-content"
+                type="submit"
+                onClick={formik.submitForm}
+              >
+                Save
+                <i>
+                  <CheckCircleOutlined />
+                </i>
+              </button>
+              <button
+                className="btn-global p-btn-content ml-20 bg-red"
+                onClick={handleClose}
+              >
+                Close
+                <i>
+                  <CloseCircleOutlined />
+                </i>
+              </button>
+            </div>
+          </div>
+        )}
+      </Formik>
     </>
   );
 }

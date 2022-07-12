@@ -7,9 +7,14 @@ import Upload, {
 } from "antd/lib/upload";
 import { useState } from "react";
 
-export default function UploadImg(props: any) {
+interface IUploadImg {
+  name: string;
+  propsFormik: any;
+  propsValue: string;
+}
+
+export default function UploadImg(props: IUploadImg) {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
 
   const getBase64 = (img: RcFile, callback: (url: string) => void) => {
     const reader = new FileReader();
@@ -22,11 +27,11 @@ export default function UploadImg(props: any) {
     if (!isJpgOrPng) {
       message.error("You can only upload JPG/PNG file!");
     }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      message.error("Image must smaller than 2MB!");
-    }
-    return isJpgOrPng && isLt2M;
+    // const isLt2M = file.size / 1024 / 1024 < 2;
+    // if (!isLt2M) {
+    //   message.error("Image must smaller than 2MB!");
+    // }
+    return isJpgOrPng;
   };
 
   const handleChange: UploadProps["onChange"] = (
@@ -40,8 +45,7 @@ export default function UploadImg(props: any) {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj as RcFile, async (url) => {
         setLoading(false);
-        await setImageUrl(url);
-        props.getImage(url);
+        props.propsFormik.setFieldValue('uploadFormik', url);
       });
     }
   };
@@ -63,8 +67,8 @@ export default function UploadImg(props: any) {
       beforeUpload={beforeUpload}
       onChange={handleChange}
     >
-      {imageUrl ? (
-        <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+      {props.propsValue ? (
+        <img src={props.propsValue} alt="avatar" style={{ width: "100%" }} />
       ) : (
         uploadButton
       )}
