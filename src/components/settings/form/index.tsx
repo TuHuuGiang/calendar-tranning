@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Carousel } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 import DateAndTime from "../date";
 import UploadImg from "../upload";
@@ -16,7 +16,8 @@ import { addPost, editPost } from "../../../redux/reducers/posts";
 import { SITE_MAP } from "../../sideBar/navigate/navigateLink/site-map";
 import Tag from "../btn-tags";
 import { Formik, Field } from "formik";
-import { validations } from "./validate";
+import * as yup from "yup";
+// import { validations } from "./validate";
 
 interface IFormPost {
   action?: string;
@@ -36,6 +37,21 @@ export default function FormPost(props: IFormPost) {
   const [date, setDate] = useState<string>("");
   const [img, setImg] = useState<string[]>([]);
   const [desc, setDesc] = useState<string>("");
+
+  const validations = yup.object({
+    uploadFormik:
+      props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate
+        ? yup.string().required("Required")
+        : yup.string(),
+    descFormik:
+      props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate
+        ? yup.string().required("Required")
+        : yup.string(),
+    dateFormik:
+      props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate
+        ? yup.string().required("Required")
+        : yup.string(),
+  });
 
   const initialValues: IFormSettings = {
     uploadFormik: "",
@@ -94,6 +110,7 @@ export default function FormPost(props: IFormPost) {
         initialValues={initialValues}
         validationSchema={validations}
         onSubmit={(values, { resetForm }) => {
+          console.log("24", values);
           handleSave(values);
           resetForm();
         }}
@@ -136,7 +153,9 @@ export default function FormPost(props: IFormPost) {
                   </Carousel>
                 )}
               </div>
-              {formik.errors.uploadFormik && formik.touched.uploadFormik ? (
+              {props.action === SITE_MAP.CALENDAR.ACTIONS.pathCreate &&
+              formik.errors.uploadFormik &&
+              formik.touched.uploadFormik ? (
                 <p className="errorMsg">{formik.errors.uploadFormik}</p>
               ) : null}
             </div>

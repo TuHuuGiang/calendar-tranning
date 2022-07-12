@@ -50,7 +50,6 @@ export default function CalendarPage() {
       description: info.event._def.extendedProps.description,
       start: date,
     };
-    console.log('info', valueEvent)
     dispatch(saveInfo(valueEvent));
   };
 
